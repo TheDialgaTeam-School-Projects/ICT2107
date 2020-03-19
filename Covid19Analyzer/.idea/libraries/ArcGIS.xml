@@ -1,0 +1,24 @@
+<component name="libraryTable">
+  <library name="ArcGIS">
+    <CLASSES>
+      <root url="jar://C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/apache-mime4j.jar!/" />
+      <root url="jar://C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/ArcGIS_Runtime_Java.jar!/" />
+      <root url="jar://C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/ArcGIS_Runtime_Java_Toolkit.jar!/" />
+      <root url="jar://C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/commons-codec.jar!/" />
+      <root url="jar://C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/commons-logging.jar!/" />
+      <root url="jar://C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/httpclient.jar!/" />
+      <root url="jar://C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/httpcore.jar!/" />
+      <root url="jar://C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/httpmime.jar!/" />
+      <root url="jar://C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/jackson-core-lgpl.jar!/" />
+      <root url="jar://C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/jackson-mapper-lgpl.jar!/" />
+      <root url="jar://C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/jcifs.jar!/" />
+      <root url="jar://C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/jcommon.jar!/" />
+      <root url="jar://C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/jfreechart.jar!/" />
+      <root url="jar://C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/json.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/ArcGIS_Runtime_Java_Toolkit-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

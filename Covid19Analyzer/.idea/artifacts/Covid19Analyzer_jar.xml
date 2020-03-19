@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Covid19Analyzer:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Covid19Analyzer_jar</output-path>
+    <root id="archive" name="Covid19Analyzer.jar">
+      <element id="module-output" name="Covid19Analyzer" />
+      <element id="extracted-dir" path="C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/apache-mime4j.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/ArcGIS_Runtime_Java.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/ArcGIS_Runtime_Java_Toolkit.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/commons-codec.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/commons-logging.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/httpclient.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/httpcore.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/httpmime.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/jackson-core-lgpl.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/jackson-mapper-lgpl.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/jcifs.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/jcommon.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/jfreechart.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/json.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
