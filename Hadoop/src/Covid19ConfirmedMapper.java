@@ -1,9 +1,6 @@
-/**
- * This will map all the confirmed covid 19 patients by country.
- */
 public class Covid19ConfirmedMapper extends AbstractCovid19Mapper {
     @Override
-    protected String getType() {
-        return "confirmed";
+    protected String getDataType() {
+        return Covid19Constants.DATA_TYPE_CONFIRMED;
     }
 }

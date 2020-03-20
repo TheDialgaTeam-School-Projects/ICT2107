@@ -6,7 +6,17 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d2148b4-3e9b-49ff-8ae9-36fd0986dfb4" name="Default Changelist" comment="" />
+    <list default="true" id="5d2148b4-3e9b-49ff-8ae9-36fd0986dfb4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Covid19Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Covid19Analyzer/src/Covid19Analyzer.form" beforeDir="false" afterPath="$PROJECT_DIR$/../Covid19Analyzer/src/Covid19Analyzer.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AbstractCovid19Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractCovid19Mapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Covid19ConfirmedMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Covid19ConfirmedMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Covid19DeathsMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Covid19DeathsMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Covid19RecoveredMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Covid19RecoveredMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Covid19Reducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Covid19Reducer.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,7 +29,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1ZIzQN9AlXWEF41Ja5sTyUAvRsx" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -31,6 +45,7 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -40,7 +55,7 @@
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -55,6 +70,9 @@
       <workItem from="1584541380668" duration="3815000" />
       <workItem from="1584602430944" duration="6332000" />
       <workItem from="1584631034929" duration="672000" />
+      <workItem from="1584713000399" duration="6776000" />
+      <workItem from="1584721246493" duration="735000" />
+      <workItem from="1584722177540" duration="18000" />
     </task>
     <servers />
   </component>
@@ -74,10 +92,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1584609213117" />
-    <state x="249" y="0" key="SettingsEditor" timestamp="1584603139204">
+    <state x="249" y="0" key="SettingsEditor" timestamp="1584717776335">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1584603139204" />
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1584717776335" />
     <state x="498" y="306" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1584541559220">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -86,9 +104,5 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="708" y="237" key="extract.method.dialog/0.0.1536.824@0.0.1536.824" timestamp="1584607725122" />
-    <state width="514" height="166" key="javadoc.popup.new" timestamp="1584608589684">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="514" height="166" key="javadoc.popup.new/0.0.1536.824@0.0.1536.824" timestamp="1584608589684" />
   </component>
 </project>

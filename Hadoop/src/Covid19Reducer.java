@@ -3,67 +3,90 @@ import org.apache.hadoop.mapreduce.Reducer;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+/**
+ * This class reduce the mapper into appropriate keys and values.
+ * KEYIN (Text): [DATA_LEVEL] [COUNTRY] [STATE]
+ * VALUEIN (Text): [LAT] [LONG] [DATA_TYPE] [DATA]
+ *
+ * KEYOUT (Text): [DATA_LEVEL] [COUNTRY] [STATE]
+ *
+ * DATA_LEVEL == State
+ * VALUEOUT (Text): [LAT] [LONG] [CONFIRMED] [DEATHS] [RECOVERED]
+ *
+ * DATA_LEVEL == Country
+ * VALUEOUT (Text): [CONFIRMED] [DEATHS] [RECOVERED]
+ */
 public class Covid19Reducer extends Reducer<Text, Text, Text, Text> {
-
-    private final Text keyText = new Text();
+    private final StringBuilder valueStringBuilder = new StringBuilder();
     private final Text valueText = new Text();
 
     @Override
     protected void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
-        List<Long> confirmed = new ArrayList<>();
-        List<Long> deaths = new ArrayList<>();
-        List<Long> recovered = new ArrayList<>();
+        final String[] keyArray = key.toString().split("\t");
+
+        String latitude = null;
+        String longitude = null;
+
+        final ArrayList<Long> confirmed = new ArrayList<>();
+        final ArrayList<Long> deaths = new ArrayList<>();
+        final ArrayList<Long> recovered = new ArrayList<>();
 
         for (Text value : values) {
-            String[] columns = value.toString().split("\t");
+            String[] valueArray = value.toString().split("\t");
 
-            if (columns[0].contentEquals("confirmed")) {
-                sumAllValues(confirmed, columns);
-            } else if (columns[0].contentEquals("deaths")) {
-                sumAllValues(deaths, columns);
-            } else if (columns[0].contentEquals("recovered")) {
-                sumAllValues(recovered, columns);
+            if (latitude == null) latitude = valueArray[0];
+            if (longitude == null) longitude = valueArray[1];
+
+            if (valueArray[2].contentEquals(Covid19Constants.DATA_TYPE_CONFIRMED)) {
+                sumAllValues(confirmed, valueArray);
+            } else if (valueArray[2].contentEquals(Covid19Constants.DATA_TYPE_DEATHS)) {
+                sumAllValues(deaths, valueArray);
+            } else if (valueArray[2].contentEquals(Covid19Constants.DATA_TYPE_RECOVERED)) {
+                sumAllValues(recovered, valueArray);
             }
         }
 
-        keyText.set(key + "\t" + "confirmed");
-        valueText.set(getValueText(confirmed));
+        valueStringBuilder.setLength(0);
 
-        context.write(keyText, valueText);
+        if (keyArray[0].contentEquals(Covid19Constants.DATA_LEVEL_STATE)) {
+            valueStringBuilder.append(latitude);
+            valueStringBuilder.append('\t');
+            valueStringBuilder.append(longitude);
+        }
 
-        keyText.set(key + "\t" + "deaths");
-        valueText.set(getValueText(deaths));
+        for (long data : confirmed) {
+            valueStringBuilder.append('\t');
+            valueStringBuilder.append(data);
+        }
 
-        context.write(keyText, valueText);
+        for (long data : deaths) {
+            valueStringBuilder.append('\t');
+            valueStringBuilder.append(data);
+        }
 
-        keyText.set(key + "\t" + "recovered");
-        valueText.set(getValueText(recovered));
+        for (long data : recovered) {
+            valueStringBuilder.append('\t');
+            valueStringBuilder.append(data);
+        }
 
-        context.write(keyText, valueText);
+        if (valueStringBuilder.indexOf("\t") == 0) {
+            valueStringBuilder.deleteCharAt(0);
+        }
+
+        valueText.set(valueStringBuilder.toString());
+        context.write(key, valueText);
     }
 
     private void sumAllValues(List<Long> type, String[] data) {
-        for (int i = 1; i < data.length; i++) {
-            if (type.size() != data.length - 1) {
-                type.add(Long.parseLong(data[i]));
-            } else {
-                type.set(i - 1, type.get(i - 1) + Long.parseLong(data[i]));
-            }
-        }
-    }
-
-    private String getValueText(List<Long> data) {
-        StringBuilder value = new StringBuilder();
-
-        for (long longValue : data) {
-            value.append(longValue);
-            value.append("\t");
+        if (type.size() == 0) {
+            type.addAll(Collections.nCopies(data.length - 3, 0L));
         }
 
-        value.deleteCharAt(value.lastIndexOf("\t"));
-
-        return value.toString();
+        for (int i = 3; i < data.length; i++) {
+            type.set(i - 3, type.get(i - 3) + Long.parseLong(data[i]));
+        }
     }
 }
