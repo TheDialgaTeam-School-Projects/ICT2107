@@ -74,7 +74,7 @@ public class Covid19Cases {
     }
 
     private static void preloadCovid19CaseOriginByCountry() throws IOException {
-        try (BufferedReader reader = new BufferedReader(new FileReader("resource/time_series_19-covid-Combined.tsv"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("data/time_series_19-covid-Combined.tsv"))) {
             while (true) {
                 String confirmed = reader.readLine();
                 if (confirmed == null) break;
@@ -109,9 +109,9 @@ public class Covid19Cases {
     }
 
     private static void preloadCovid19CaseOriginByState() throws IOException, CsvValidationException {
-        try (CSVReader confirmedReader = new CSVReader(new FileReader("resource/time_series_19-covid-Confirmed.csv"))) {
-            try (CSVReader deathsReader = new CSVReader(new FileReader("resource/time_series_19-covid-Deaths.csv"))) {
-                try (CSVReader recoveredReader = new CSVReader(new FileReader("resource/time_series_19-covid-Recovered.csv"))) {
+        try (CSVReader confirmedReader = new CSVReader(new FileReader("data/time_series_19-covid-Confirmed.csv"))) {
+            try (CSVReader deathsReader = new CSVReader(new FileReader("data/time_series_19-covid-Deaths.csv"))) {
+                try (CSVReader recoveredReader = new CSVReader(new FileReader("data/time_series_19-covid-Recovered.csv"))) {
                     confirmedReader.readNextSilently();
                     deathsReader.readNextSilently();
                     recoveredReader.readNextSilently();

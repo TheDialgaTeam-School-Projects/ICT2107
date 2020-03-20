@@ -3,6 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/Covid19Analyzer_jar</output-path>
     <root id="archive" name="Covid19Analyzer.jar">
       <element id="module-output" name="Covid19Analyzer" />
+      <element id="extracted-dir" path="$APPLICATION_HOME_DIR$/redist/forms_rt.jar" path-in-jar="/" />
       <element id="extracted-dir" path="C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/apache-mime4j.jar" path-in-jar="/" />
       <element id="extracted-dir" path="C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/ArcGIS_Runtime_Java.jar" path-in-jar="/" />
       <element id="extracted-dir" path="C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/ArcGIS_Runtime_Java_Toolkit.jar" path-in-jar="/" />
@@ -17,6 +18,13 @@
       <element id="extracted-dir" path="C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/jcommon.jar" path-in-jar="/" />
       <element id="extracted-dir" path="C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/jfreechart.jar" path-in-jar="/" />
       <element id="extracted-dir" path="C:/Program Files (x86)/ArcGIS SDKs/java10.2.4/sdk/jars/json.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/opencsv-5.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-lang3-3.9.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-text-1.8.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-beanutils-1.9.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-logging-1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-collections-3.2.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-collections4-4.4.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

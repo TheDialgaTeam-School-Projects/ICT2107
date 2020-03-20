@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact build-on-make="true" name="Additional Resource">
+    <output-path>$PROJECT_DIR$/out/artifacts/Covid19Analyzer_jar</output-path>
+    <root id="root">
+      <element id="directory" name="data">
+        <element id="dir-copy" path="$PROJECT_DIR$/data" />
+      </element>
+      <element id="directory" name="client64">
+        <element id="dir-copy" path="$PROJECT_DIR$/client64" />
+      </element>
+      <element id="directory" name="resources">
+        <element id="dir-copy" path="$PROJECT_DIR$/resources" />
+      </element>
+    </root>
+  </artifact>
+</component>
