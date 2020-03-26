@@ -25,6 +25,7 @@ public class Covid19GraphViewModel {
         for (Covid19Case covid19Case : covid19Repository.getCovid19CasesByCountry()) {
             if (covid19Case.getCountry().contentEquals(country)) return covid19Case;
         }
+
         return null;
     }
 }

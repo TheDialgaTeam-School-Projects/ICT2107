@@ -37,6 +37,7 @@ public final class Covid19Database implements ICovid19Database {
                 }
             }
         }
+
         return instance;
     }
 

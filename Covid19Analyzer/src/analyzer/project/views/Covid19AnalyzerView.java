@@ -99,7 +99,7 @@ public final class Covid19AnalyzerView extends AbstractView {
         viewByButtonGroup.add(viewByDeathsMenuItem);
         viewByButtonGroup.add(viewByRecoveredMenuItem);
 
-        JMenuItem viewGraph = new JMenuItem("Graph");
+        JMenuItem viewGraph = new JMenuItem("Graph View By Country");
         viewGraph.addActionListener(e -> {
             try {
                 final Covid19GraphView graphView = new Covid19GraphView();

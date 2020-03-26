@@ -6,27 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d2148b4-3e9b-49ff-8ae9-36fd0986dfb4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Covid19Analyzer/.idea/libraries/org_jfree_jfreechart_1_5_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/ActionDelegate.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/models/Covid19GraphViewModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/views/AbstractView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/views/Covid19GraphView.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/views/Covid19GraphView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Covid19Analyzer/.idea/artifacts/Covid19Analyzer_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Covid19Analyzer/.idea/artifacts/Covid19Analyzer_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Covid19Analyzer/Covid19Analyzer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Covid19Analyzer/Covid19Analyzer.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/Covid19AnalyzerProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/Covid19AnalyzerProgram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/IDisposable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/models/Covid19AnalyzerViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/models/Covid19AnalyzerViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/models/Covid19Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/models/Covid19Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/models/Covid19Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/models/Covid19Repository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/views/Covid19AnalyzerView.form" beforeDir="false" afterPath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/views/Covid19AnalyzerView.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/views/Covid19AnalyzerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/views/Covid19AnalyzerView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Hadoop_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Hadoop_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AbstractCovid19Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractCovid19Mapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Covid19Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Covid19Program.java" afterDir="false" />
-    </list>
+    <list default="true" id="5d2148b4-3e9b-49ff-8ae9-36fd0986dfb4" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -87,6 +67,7 @@
       <workItem from="1585209764988" duration="33000" />
       <workItem from="1585211263757" duration="815000" />
       <workItem from="1585212797046" duration="208000" />
+      <workItem from="1585235653413" duration="13000" />
     </task>
     <servers />
   </component>
