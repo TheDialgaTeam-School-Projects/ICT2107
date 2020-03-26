@@ -1,6 +1,5 @@
 package analyzer.project.views;
 
-import analyzer.project.IDisposable;
 import analyzer.project.models.Covid19AnalyzerViewModel;
 import analyzer.project.models.Covid19Case;
 import analyzer.project.models.Covid19Repository;
@@ -15,106 +14,120 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
-public final class Covid19AnalyzerView implements IDisposable {
+public final class Covid19AnalyzerView extends AbstractView {
+    private static final String VIEW_TITLE = "Covid-19 Analyzer";
+    private static final String VIEW_BY_CONFIRMED = "view_by_confirmed";
+    private static final String VIEW_BY_DEATHS = "view_by_deaths";
+    private static final String VIEW_BY_RECOVERED = "view_by_recovered";
+
     private JPanel panel;
-    private JMap map;
-    private JPanel confirmedCasesByCountryPanel;
-    private JLabel totalCaseConfirmedLabel;
+    private JMenu viewMenu;
     private JSlider daysSlider;
+    private JLabel totalCasesLabel;
+    private JLabel totalCasesValueLabel;
+    private JLabel casesByCountryLabel;
+    private JPanel casesByCountryPanel;
+    private JMap map;
 
     private Covid19AnalyzerViewModel viewModel;
     private GraphicsLayer graphicsLayer;
 
-    public JPanel getPanel() {
+    private String viewBy;
+    private int numberOfDays;
+
+    public Covid19AnalyzerView() throws IOException {
+        viewModel = new Covid19AnalyzerViewModel();
+        viewBy = VIEW_BY_CONFIRMED;
+        numberOfDays = viewModel.getTotalAmountOfDays() - 1;
+
+        createMenuUIComponents();
+        createDaysSliderUIComponents();
+        createMapUIComponents();
+
+        updateCasesByDay();
+    }
+
+    @Override
+    protected String getTitle() {
+        return VIEW_TITLE;
+    }
+
+    @Override
+    protected JPanel getPanel() {
         return panel;
     }
 
-    private void createUIComponents() throws IOException {
-        viewModel = new Covid19AnalyzerViewModel();
+    private void createMenuUIComponents() {
+        ActionListener viewByAction = e -> {
+            switch (e.getActionCommand()) {
+                case VIEW_BY_CONFIRMED:
+                    viewBy = VIEW_BY_CONFIRMED;
+                    break;
 
-        createDaysSliderUIComponents();
-        createTotalConfirmedUIComponents();
-        createConfirmedCasesByCountryUIComponents();
-        createMapUIComponents();
+                case VIEW_BY_DEATHS:
+                    viewBy = VIEW_BY_DEATHS;
+                    break;
+
+                case VIEW_BY_RECOVERED:
+                    viewBy = VIEW_BY_RECOVERED;
+                    break;
+            }
+
+            updateCasesByDay();
+        };
+
+        JRadioButtonMenuItem viewByConfirmedMenuItem = new JRadioButtonMenuItem("By Confirmed Cases", true);
+        viewByConfirmedMenuItem.setActionCommand(VIEW_BY_CONFIRMED);
+        viewByConfirmedMenuItem.addActionListener(viewByAction);
+
+        JRadioButtonMenuItem viewByDeathsMenuItem = new JRadioButtonMenuItem("By Deaths Cases");
+        viewByDeathsMenuItem.setActionCommand(VIEW_BY_DEATHS);
+        viewByDeathsMenuItem.addActionListener(viewByAction);
+
+        JRadioButtonMenuItem viewByRecoveredMenuItem = new JRadioButtonMenuItem("By Recovered Cases");
+        viewByRecoveredMenuItem.setActionCommand(VIEW_BY_RECOVERED);
+        viewByRecoveredMenuItem.addActionListener(viewByAction);
+
+        ButtonGroup viewByButtonGroup = new ButtonGroup();
+        viewByButtonGroup.add(viewByConfirmedMenuItem);
+        viewByButtonGroup.add(viewByDeathsMenuItem);
+        viewByButtonGroup.add(viewByRecoveredMenuItem);
+
+        JMenuItem viewGraph = new JMenuItem("Graph");
+        viewGraph.addActionListener(e -> {
+            try {
+                final Covid19GraphView graphView = new Covid19GraphView();
+                graphView.show();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        viewMenu.add(viewByConfirmedMenuItem);
+        viewMenu.add(viewByDeathsMenuItem);
+        viewMenu.add(viewByRecoveredMenuItem);
+        viewMenu.addSeparator();
+        viewMenu.add(viewGraph);
     }
 
     private void createDaysSliderUIComponents() {
-        final int amountOfDays = viewModel.getTotalAmountOfDays() - 1;
-
-        daysSlider = new JSlider();
-        daysSlider.setMaximum(amountOfDays);
-        daysSlider.setValue(amountOfDays);
+        daysSlider.setMaximum(numberOfDays);
+        daysSlider.setValue(numberOfDays);
         daysSlider.addChangeListener(e -> {
-            final int numberOfDays = daysSlider.getValue();
-
-            updateTotalConfirmedUIComponents(numberOfDays);
-            updateConfirmedCasesByCountryUIComponents(numberOfDays);
-            updateMapUIComponents(numberOfDays);
+            numberOfDays = daysSlider.getValue();
+            updateCasesByDay();
         });
-    }
-
-    private void createTotalConfirmedUIComponents() {
-        totalCaseConfirmedLabel = new JLabel();
-        updateTotalConfirmedUIComponents(daysSlider.getValue());
-    }
-
-    private void updateTotalConfirmedUIComponents(int numberOfDays) {
-        totalCaseConfirmedLabel.setText(NumberFormat.getInstance().format(viewModel.getTotalConfirmedCases(numberOfDays)));
-    }
-
-    private void createConfirmedCasesByCountryUIComponents() {
-        confirmedCasesByCountryPanel = new JPanel();
-        confirmedCasesByCountryPanel.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
-        updateConfirmedCasesByCountryUIComponents(daysSlider.getValue());
-    }
-
-    private void updateConfirmedCasesByCountryUIComponents(int numberOfDays) {
-        confirmedCasesByCountryPanel.removeAll();
-        confirmedCasesByCountryPanel.invalidate();
-        confirmedCasesByCountryPanel.updateUI();
-
-        final List<Covid19Case> covid19Cases = viewModel.getCovid19CasesByCountry(numberOfDays, Covid19Repository.SORT_BY_CONFIRMED);
-        covid19Cases.removeIf(covid19Case -> covid19Case.getConfirmed(numberOfDays) == 0);
-
-        int rowAdded = 0;
-
-        final GridLayoutManager gridLayoutManager = new GridLayoutManager(covid19Cases.size(), 2);
-        confirmedCasesByCountryPanel.setLayout(gridLayoutManager);
-
-        final GridConstraints gridConstraints = new GridConstraints();
-
-        for (final Covid19Case covid19Case : covid19Cases) {
-            final JLabel confirmedLabel = new JLabel(NumberFormat.getInstance().format(covid19Case.getConfirmed(numberOfDays)));
-            confirmedLabel.setForeground(new Color(230, 0, 0));
-
-            gridConstraints.setColumn(0);
-            gridConstraints.setRow(rowAdded);
-            gridConstraints.setHSizePolicy(GridConstraints.SIZEPOLICY_FIXED);
-
-            confirmedCasesByCountryPanel.add(confirmedLabel, gridConstraints);
-
-            final JLabel countryLabel = new JLabel(covid19Case.getCountry());
-
-            gridConstraints.setColumn(1);
-            gridConstraints.setRow(rowAdded);
-            gridConstraints.setFill(GridConstraints.FILL_HORIZONTAL);
-            gridConstraints.setHSizePolicy(GridConstraints.SIZEPOLICY_WANT_GROW);
-
-            confirmedCasesByCountryPanel.add(countryLabel, gridConstraints);
-
-            rowAdded++;
-        }
     }
 
     private void createMapUIComponents() {
         final MapOptions mapOptions = new MapOptions(MapOptions.MapType.TOPO);
-        map = new JMap(mapOptions);
+        map.setMapOptions(mapOptions);
 
         final NavigatorOverlay navigator = new NavigatorOverlay();
         map.addMapOverlay(navigator);
@@ -130,23 +143,139 @@ public final class Covid19AnalyzerView implements IDisposable {
         displayFields.put("active", "Active: ");
 
         graphicsLayer.setMapTip(new MapTip(displayFields));
-
-        updateMapUIComponents(daysSlider.getValue());
     }
 
-    private void updateMapUIComponents(int numberOfDays) {
-        graphicsLayer.removeAll();
+    private void updateCasesByDay() {
+        updateTotalCaseUIComponents();
+        updateCasesByCountryUIComponents();
+        updateMapUIComponents();
+    }
 
-        final List<Covid19Case> covid19Cases = viewModel.getCovid19CasesByState(numberOfDays, Covid19Repository.SORT_BY_CONFIRMED);
+    private void updateTotalCaseUIComponents() {
+        switch (viewBy) {
+            case VIEW_BY_CONFIRMED:
+                totalCasesLabel.setText("Total Confirmed");
+                totalCasesValueLabel.setText(NumberFormat.getInstance().format(viewModel.getTotalConfirmedCases(numberOfDays)));
+                break;
 
-        for (final Covid19Case covid19Case : covid19Cases) {
-            if (covid19Case.getConfirmed(numberOfDays) == 0) continue;
-            graphicsLayer.addGraphic(MapUtility.createGraphic(covid19Case, numberOfDays));
+            case VIEW_BY_DEATHS:
+                totalCasesLabel.setText("Total Deaths");
+                totalCasesValueLabel.setText(NumberFormat.getInstance().format(viewModel.getTotalDeathCases(numberOfDays)));
+                break;
+
+            case VIEW_BY_RECOVERED:
+                totalCasesLabel.setText("Total Recovered");
+                totalCasesValueLabel.setText(NumberFormat.getInstance().format(viewModel.getTotalRecoveredCases(numberOfDays)));
+                break;
         }
     }
 
-    @Override
-    public void dispose() {
-        map.dispose();
+    private void updateCasesByCountryUIComponents() {
+        final List<Covid19Case> covid19Cases;
+
+        switch (viewBy) {
+            case VIEW_BY_CONFIRMED:
+                casesByCountryLabel.setText("Confirmed Cases by Country");
+                covid19Cases = viewModel.getCovid19CasesByCountry(numberOfDays, Covid19Repository.SORT_BY_CONFIRMED);
+                covid19Cases.removeIf(covid19Case -> covid19Case.getConfirmed(numberOfDays) == 0);
+                break;
+
+            case VIEW_BY_DEATHS:
+                casesByCountryLabel.setText("Deaths Cases by Country");
+                covid19Cases = viewModel.getCovid19CasesByCountry(numberOfDays, Covid19Repository.SORT_BY_DEATHS);
+                covid19Cases.removeIf(covid19Case -> covid19Case.getDeaths(numberOfDays) == 0);
+                break;
+
+            case VIEW_BY_RECOVERED:
+                casesByCountryLabel.setText("Recovered Cases by Country");
+                covid19Cases = viewModel.getCovid19CasesByCountry(numberOfDays, Covid19Repository.SORT_BY_RECOVERED);
+                covid19Cases.removeIf(covid19Case -> covid19Case.getRecovered(numberOfDays) == 0);
+                break;
+
+            default:
+                throw new IllegalStateException("Unexpected value: " + viewBy);
+        }
+
+        casesByCountryPanel.removeAll();
+        casesByCountryPanel.invalidate();
+        casesByCountryPanel.updateUI();
+
+        int rowAdded = 0;
+
+        final GridLayoutManager gridLayoutManager = new GridLayoutManager(covid19Cases.size(), 2);
+        casesByCountryPanel.setLayout(gridLayoutManager);
+
+        final GridConstraints gridConstraints = new GridConstraints();
+
+        for (final Covid19Case covid19Case : covid19Cases) {
+
+            final JLabel confirmedLabel;
+
+            switch (viewBy) {
+                case VIEW_BY_CONFIRMED:
+                    confirmedLabel = new JLabel(NumberFormat.getInstance().format(covid19Case.getConfirmed(numberOfDays)));
+                    break;
+
+                case VIEW_BY_DEATHS:
+                    confirmedLabel = new JLabel(NumberFormat.getInstance().format(covid19Case.getDeaths(numberOfDays)));
+                    break;
+
+                case VIEW_BY_RECOVERED:
+                    confirmedLabel = new JLabel(NumberFormat.getInstance().format(covid19Case.getRecovered(numberOfDays)));
+                    break;
+
+                default:
+                    throw new IllegalStateException("Unexpected value: " + viewBy);
+            }
+
+            confirmedLabel.setForeground(new Color(230, 0, 0));
+
+            gridConstraints.setColumn(0);
+            gridConstraints.setRow(rowAdded);
+            gridConstraints.setHSizePolicy(GridConstraints.SIZEPOLICY_FIXED);
+
+            casesByCountryPanel.add(confirmedLabel, gridConstraints);
+
+            final JLabel countryLabel = new JLabel(covid19Case.getCountry());
+
+            gridConstraints.setColumn(1);
+            gridConstraints.setRow(rowAdded);
+            gridConstraints.setFill(GridConstraints.FILL_HORIZONTAL);
+            gridConstraints.setHSizePolicy(GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW);
+
+            casesByCountryPanel.add(countryLabel, gridConstraints);
+
+            rowAdded++;
+        }
+    }
+
+    private void updateMapUIComponents() {
+        graphicsLayer.removeAll();
+
+        final List<Covid19Case> covid19Cases;
+
+        switch (viewBy) {
+            case VIEW_BY_CONFIRMED:
+                covid19Cases = viewModel.getCovid19CasesByState(numberOfDays, Covid19Repository.SORT_BY_CONFIRMED);
+                covid19Cases.removeIf(e -> e.getConfirmed(numberOfDays) == 0);
+                break;
+
+            case VIEW_BY_DEATHS:
+                covid19Cases = viewModel.getCovid19CasesByState(numberOfDays, Covid19Repository.SORT_BY_DEATHS);
+                covid19Cases.removeIf(e -> e.getDeaths(numberOfDays) == 0);
+                break;
+
+            case VIEW_BY_RECOVERED:
+                covid19Cases = viewModel.getCovid19CasesByState(numberOfDays, Covid19Repository.SORT_BY_RECOVERED);
+                covid19Cases.removeIf(e -> e.getRecovered(numberOfDays) == 0);
+                break;
+
+            default:
+                throw new IllegalStateException("Unexpected value: " + viewBy);
+        }
+
+        for (final Covid19Case covid19Case : covid19Cases) {
+            graphicsLayer.addGraphic(MapUtility.createGraphic(covid19Case, numberOfDays));
+        }
     }
 }

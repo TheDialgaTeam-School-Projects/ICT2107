@@ -7,7 +7,7 @@ public class Covid19AnalyzerViewModel {
     private final Covid19Repository covid19Repository;
 
     public Covid19AnalyzerViewModel() throws IOException {
-        covid19Repository = new Covid19Repository(new Covid19Database());
+        covid19Repository = new Covid19Repository(Covid19Database.getInstance());
     }
 
     public int getTotalAmountOfDays() {
@@ -16,6 +16,14 @@ public class Covid19AnalyzerViewModel {
 
     public long getTotalConfirmedCases(int numberOfDays) {
         return covid19Repository.getTotalConfirmedCases(numberOfDays);
+    }
+
+    public long getTotalDeathCases(int numberOfDays) {
+        return covid19Repository.getTotalDeathCases(numberOfDays);
+    }
+
+    public long getTotalRecoveredCases(int numberOfDays) {
+        return covid19Repository.getTotalRecoveredCases(numberOfDays);
     }
 
     public List<Covid19Case> getCovid19CasesByCountry(int numberOfDays, int sortBy) {

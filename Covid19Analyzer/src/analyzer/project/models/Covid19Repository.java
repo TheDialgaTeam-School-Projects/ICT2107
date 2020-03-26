@@ -15,6 +15,10 @@ public final class Covid19Repository {
         this.covid19Database = covid19Database;
     }
 
+    public List<Covid19Case> getCovid19CasesByCountry() {
+        return new ArrayList<>(covid19Database.getCovid19CasesByCountry());
+    }
+
     public int getTotalAmountOfDays() {
         return covid19Database.getCovid19CasesByCountry().get(0).getConfirmed().length;
     }

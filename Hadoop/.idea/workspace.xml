@@ -7,15 +7,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d2148b4-3e9b-49ff-8ae9-36fd0986dfb4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Covid19Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Covid19Analyzer/src/Covid19Analyzer.form" beforeDir="false" afterPath="$PROJECT_DIR$/../Covid19Analyzer/src/Covid19Analyzer.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Covid19Analyzer/.idea/libraries/org_jfree_jfreechart_1_5_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/ActionDelegate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/models/Covid19GraphViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/views/AbstractView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/views/Covid19GraphView.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/views/Covid19GraphView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Covid19Analyzer/.idea/artifacts/Covid19Analyzer_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Covid19Analyzer/.idea/artifacts/Covid19Analyzer_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Covid19Analyzer/Covid19Analyzer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Covid19Analyzer/Covid19Analyzer.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/Covid19AnalyzerProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/Covid19AnalyzerProgram.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/IDisposable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/models/Covid19AnalyzerViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/models/Covid19AnalyzerViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/models/Covid19Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/models/Covid19Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/models/Covid19Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/models/Covid19Repository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/views/Covid19AnalyzerView.form" beforeDir="false" afterPath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/views/Covid19AnalyzerView.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/views/Covid19AnalyzerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Covid19Analyzer/src/analyzer/project/views/Covid19AnalyzerView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Hadoop_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Hadoop_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AbstractCovid19Mapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AbstractCovid19Mapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Covid19ConfirmedMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Covid19ConfirmedMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Covid19DeathsMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Covid19DeathsMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Covid19RecoveredMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Covid19RecoveredMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Covid19Reducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Covid19Reducer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Covid19Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Covid19Program.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +62,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
@@ -73,6 +83,10 @@
       <workItem from="1584713000399" duration="6776000" />
       <workItem from="1584721246493" duration="735000" />
       <workItem from="1584722177540" duration="18000" />
+      <workItem from="1585209098986" duration="433000" />
+      <workItem from="1585209764988" duration="33000" />
+      <workItem from="1585211263757" duration="815000" />
+      <workItem from="1585212797046" duration="208000" />
     </task>
     <servers />
   </component>
@@ -92,10 +106,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1584609213117" />
-    <state x="249" y="0" key="SettingsEditor" timestamp="1584717776335">
+    <state x="249" y="0" key="SettingsEditor" timestamp="1585209772547">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1584717776335" />
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1585209772547" />
     <state x="498" y="306" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1584541559220">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

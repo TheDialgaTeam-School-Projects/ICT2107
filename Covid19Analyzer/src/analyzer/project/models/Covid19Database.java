@@ -8,6 +8,7 @@ import java.util.List;
 
 public final class Covid19Database implements ICovid19Database {
     private static final String DATA_FILE = "data/time_series_19-covid.tsv";
+    private static Covid19Database instance;
 
     private final List<Covid19Case> covid19CasesByCountry = new ArrayList<>();
     private final List<Covid19Case> covid19CasesByState = new ArrayList<>();
@@ -26,6 +27,17 @@ public final class Covid19Database implements ICovid19Database {
                 }
             }
         }
+    }
+
+    public static Covid19Database getInstance() throws IOException {
+        if (instance == null) {
+            synchronized (Covid19Database.class) {
+                if (instance == null) {
+                    instance = new Covid19Database();
+                }
+            }
+        }
+        return instance;
     }
 
     public List<Covid19Case> getCovid19CasesByCountry() {

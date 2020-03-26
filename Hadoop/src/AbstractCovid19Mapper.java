@@ -62,7 +62,7 @@ public abstract class AbstractCovid19Mapper extends Mapper<LongWritable, Text, T
             // Cases starting from 1/22/20 (MM/DD/YY) to the latest.
             for (int i = 4; i < csvColumns.length; i++) {
                 valueStringBuilder.append("\t");
-                valueStringBuilder.append(csvColumns[i]);
+                valueStringBuilder.append(csvColumns[i].isEmpty() ? "0" : csvColumns[i]);
             }
 
             valueText.set(valueStringBuilder.toString());

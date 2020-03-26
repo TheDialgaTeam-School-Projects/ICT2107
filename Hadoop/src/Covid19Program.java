@@ -29,7 +29,7 @@ public class Covid19Program {
         MultipleInputs.addInputPath(job, deathsInputPath, TextInputFormat.class, Covid19DeathsMapper.class);
         MultipleInputs.addInputPath(job, recoveredInputPath, TextInputFormat.class, Covid19RecoveredMapper.class);
 
-        Path outputPath = new Path("hdfs://localhost:9000/covid/output/time_series_19-covid");
+        Path outputPath = new Path("hdfs://localhost:9000/covid/output/time_series_19");
         outputPath.getFileSystem(configuration).delete(outputPath, true);
 
         FileOutputFormat.setOutputPath(job, outputPath);
