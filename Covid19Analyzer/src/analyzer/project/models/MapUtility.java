@@ -14,9 +14,9 @@ public final class MapUtility {
     private static final String VIEW_BY_CONFIRMED = "view_by_confirmed";
     private static final String VIEW_BY_DEATHS = "view_by_deaths";
     private static final String VIEW_BY_RECOVERED = "view_by_recovered";
-    private static final Color CONFIRMED_COLOR = new Color(180, 0, 0);
-    private static final Color DEATHS_COLOR = new Color(0, 0, 180);
-    private static final Color RECOVERED_COLOR = new Color(0, 180, 0);
+    private static final Color CONFIRMED_COLOR = new Color(180, 0, 0, 150);
+    private static final Color DEATHS_COLOR = new Color(0, 0, 180, 150);
+    private static final Color RECOVERED_COLOR = new Color(0, 180, 0, 150);
     private static final SpatialReference DEFAULT_SPATIAL_REFERENCE = SpatialReference.create(SpatialReference.WKID_WGS84_WEB_MERCATOR_AUXILIARY_SPHERE);
     private static final SimpleMarkerSymbol CONFIRMED_CIRCLE = new SimpleMarkerSymbol(CONFIRMED_COLOR, 1, SimpleMarkerSymbol.Style.CIRCLE);
     private static final SimpleMarkerSymbol DEATHS_CIRCLE = new SimpleMarkerSymbol(DEATHS_COLOR, 1, SimpleMarkerSymbol.Style.CIRCLE);
