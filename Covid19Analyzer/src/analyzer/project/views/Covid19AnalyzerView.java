@@ -25,6 +25,9 @@ public final class Covid19AnalyzerView extends AbstractView {
     private static final String VIEW_BY_CONFIRMED = "view_by_confirmed";
     private static final String VIEW_BY_DEATHS = "view_by_deaths";
     private static final String VIEW_BY_RECOVERED = "view_by_recovered";
+    private static final Color CONFIRMED_COLOR = new Color(180, 0, 0);
+    private static final Color DEATHS_COLOR = new Color(0, 0, 180);
+    private static final Color RECOVERED_COLOR = new Color(0, 180, 0);
 
     private JPanel panel;
     private JMenu viewMenu;
@@ -155,16 +158,19 @@ public final class Covid19AnalyzerView extends AbstractView {
         switch (viewBy) {
             case VIEW_BY_CONFIRMED:
                 totalCasesLabel.setText("Total Confirmed");
+                totalCasesValueLabel.setForeground(CONFIRMED_COLOR);
                 totalCasesValueLabel.setText(NumberFormat.getInstance().format(viewModel.getTotalConfirmedCases(numberOfDays)));
                 break;
 
             case VIEW_BY_DEATHS:
                 totalCasesLabel.setText("Total Deaths");
+                totalCasesValueLabel.setForeground(DEATHS_COLOR);
                 totalCasesValueLabel.setText(NumberFormat.getInstance().format(viewModel.getTotalDeathCases(numberOfDays)));
                 break;
 
             case VIEW_BY_RECOVERED:
                 totalCasesLabel.setText("Total Recovered");
+                totalCasesValueLabel.setForeground(RECOVERED_COLOR);
                 totalCasesValueLabel.setText(NumberFormat.getInstance().format(viewModel.getTotalRecoveredCases(numberOfDays)));
                 break;
         }
@@ -214,21 +220,22 @@ public final class Covid19AnalyzerView extends AbstractView {
             switch (viewBy) {
                 case VIEW_BY_CONFIRMED:
                     confirmedLabel = new JLabel(NumberFormat.getInstance().format(covid19Case.getConfirmed(numberOfDays)));
+                    confirmedLabel.setForeground(CONFIRMED_COLOR);
                     break;
 
                 case VIEW_BY_DEATHS:
                     confirmedLabel = new JLabel(NumberFormat.getInstance().format(covid19Case.getDeaths(numberOfDays)));
+                    confirmedLabel.setForeground(DEATHS_COLOR);
                     break;
 
                 case VIEW_BY_RECOVERED:
                     confirmedLabel = new JLabel(NumberFormat.getInstance().format(covid19Case.getRecovered(numberOfDays)));
+                    confirmedLabel.setForeground(RECOVERED_COLOR);
                     break;
 
                 default:
                     throw new IllegalStateException("Unexpected value: " + viewBy);
             }
-
-            confirmedLabel.setForeground(new Color(230, 0, 0));
 
             gridConstraints.setColumn(0);
             gridConstraints.setRow(rowAdded);
@@ -275,7 +282,7 @@ public final class Covid19AnalyzerView extends AbstractView {
         }
 
         for (final Covid19Case covid19Case : covid19Cases) {
-            graphicsLayer.addGraphic(MapUtility.createGraphic(covid19Case, numberOfDays));
+            graphicsLayer.addGraphic(MapUtility.createGraphic(covid19Case, numberOfDays, viewBy));
         }
     }
 }

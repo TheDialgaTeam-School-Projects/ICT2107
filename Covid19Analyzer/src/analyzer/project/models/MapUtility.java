@@ -11,10 +11,18 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public final class MapUtility {
+    private static final String VIEW_BY_CONFIRMED = "view_by_confirmed";
+    private static final String VIEW_BY_DEATHS = "view_by_deaths";
+    private static final String VIEW_BY_RECOVERED = "view_by_recovered";
+    private static final Color CONFIRMED_COLOR = new Color(180, 0, 0);
+    private static final Color DEATHS_COLOR = new Color(0, 0, 180);
+    private static final Color RECOVERED_COLOR = new Color(0, 180, 0);
     private static final SpatialReference DEFAULT_SPATIAL_REFERENCE = SpatialReference.create(SpatialReference.WKID_WGS84_WEB_MERCATOR_AUXILIARY_SPHERE);
-    private static final SimpleMarkerSymbol DEFAULT_CIRCLE = new SimpleMarkerSymbol(new Color(230, 0, 0), 1, SimpleMarkerSymbol.Style.CIRCLE);
+    private static final SimpleMarkerSymbol CONFIRMED_CIRCLE = new SimpleMarkerSymbol(CONFIRMED_COLOR, 1, SimpleMarkerSymbol.Style.CIRCLE);
+    private static final SimpleMarkerSymbol DEATHS_CIRCLE = new SimpleMarkerSymbol(DEATHS_COLOR, 1, SimpleMarkerSymbol.Style.CIRCLE);
+    private static final SimpleMarkerSymbol RECOVERED_CIRCLE = new SimpleMarkerSymbol(RECOVERED_COLOR, 1, SimpleMarkerSymbol.Style.CIRCLE);
 
-    public static Graphic createGraphic(Covid19Case covid19Case, int numberOfDays) {
+    public static Graphic createGraphic(Covid19Case covid19Case, int numberOfDays, String viewBy) {
         final Geometry geometry = GeometryEngine.project(covid19Case.getLongitude(), covid19Case.getLatitude(), DEFAULT_SPATIAL_REFERENCE);
         final Map<String, Object> attributes = new LinkedHashMap<>();
 
@@ -34,26 +42,45 @@ public final class MapUtility {
         attributes.put("recovered", recovered);
         attributes.put("active", active);
 
-        if (confirmed <= 50) {
-            DEFAULT_CIRCLE.setSize(5);
-        } else if (confirmed <= 200) {
-            DEFAULT_CIRCLE.setSize(10);
-        } else if (confirmed <= 400) {
-            DEFAULT_CIRCLE.setSize(15);
-        } else if (confirmed <= 800) {
-            DEFAULT_CIRCLE.setSize(20);
-        } else if (confirmed <= 1600) {
-            DEFAULT_CIRCLE.setSize(25);
-        } else if (confirmed <= 3000) {
-            DEFAULT_CIRCLE.setSize(30);
-        } else if (confirmed <= 17000) {
-            DEFAULT_CIRCLE.setSize(35);
-        } else if (confirmed <= 50000) {
-            DEFAULT_CIRCLE.setSize(40);
-        } else if (confirmed <= 100000) {
-            DEFAULT_CIRCLE.setSize(45);
+        final SimpleMarkerSymbol defaultCircle;
+
+        switch (viewBy) {
+            case VIEW_BY_CONFIRMED:
+                defaultCircle = CONFIRMED_CIRCLE;
+                break;
+
+            case VIEW_BY_DEATHS:
+                defaultCircle = DEATHS_CIRCLE;
+                break;
+
+            case VIEW_BY_RECOVERED:
+                defaultCircle = RECOVERED_CIRCLE;
+                break;
+
+            default:
+                throw new IllegalStateException("Unexpected value: " + viewBy);
         }
 
-        return new Graphic(geometry, DEFAULT_CIRCLE, attributes);
+        if (confirmed <= 50) {
+            defaultCircle.setSize(5);
+        } else if (confirmed <= 200) {
+            defaultCircle.setSize(10);
+        } else if (confirmed <= 400) {
+            defaultCircle.setSize(15);
+        } else if (confirmed <= 800) {
+            defaultCircle.setSize(20);
+        } else if (confirmed <= 1600) {
+            defaultCircle.setSize(25);
+        } else if (confirmed <= 3000) {
+            defaultCircle.setSize(30);
+        } else if (confirmed <= 17000) {
+            defaultCircle.setSize(35);
+        } else if (confirmed <= 50000) {
+            defaultCircle.setSize(40);
+        } else if (confirmed <= 100000) {
+            defaultCircle.setSize(45);
+        }
+
+        return new Graphic(geometry, defaultCircle, attributes);
     }
 }
