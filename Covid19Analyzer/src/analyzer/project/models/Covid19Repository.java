@@ -8,6 +8,7 @@ public final class Covid19Repository {
     public static final int SORT_BY_CONFIRMED = 0;
     public static final int SORT_BY_DEATHS = 1;
     public static final int SORT_BY_RECOVERED = 2;
+    public static final int SORT_BY_ACTIVE = 3;
 
     private final ICovid19Database covid19Database;
 
@@ -53,6 +54,16 @@ public final class Covid19Repository {
         return total;
     }
 
+    public long getTotalActiveCases(int numberOfDays) {
+        long total = 0;
+
+        for (Covid19Case covid19Case : covid19Database.getCovid19CasesByCountry()) {
+            total += covid19Case.getActive(numberOfDays);
+        }
+
+        return total;
+    }
+
     public List<Covid19Case> getCovid19CasesByCountry(int numberOfDays, int sortBy) {
         final List<Covid19Case> covid19Cases = new ArrayList<>(covid19Database.getCovid19CasesByCountry());
         covid19Cases.sort(getCovid19CaseComparator(numberOfDays, sortBy));
@@ -84,6 +95,11 @@ public final class Covid19Repository {
                 case SORT_BY_RECOVERED:
                     aValue = a.getRecovered(numberOfDays);
                     bValue = b.getRecovered(numberOfDays);
+                    break;
+
+                case SORT_BY_ACTIVE:
+                    aValue = a.getActive(numberOfDays);
+                    bValue = b.getActive(numberOfDays);
                     break;
 
                 default:

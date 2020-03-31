@@ -28,4 +28,19 @@ public class Covid19GraphViewModel {
 
         return null;
     }
+
+    public List<Covid19Case> getCovid19CasesByCountryRecoveredPercentage() {
+        final List<Covid19Case> covid19Cases = new ArrayList<>(covid19Repository.getCovid19CasesByCountry());
+        covid19Cases.sort((o1, o2) -> {
+            double[] o1Percentage = o1.getRecoveredPercentage();
+            double[] o2Percentage = o2.getRecoveredPercentage();
+            double high1 = o1Percentage[o1Percentage.length - 1];
+            double high2 = o2Percentage[o1Percentage.length - 1];
+
+            if (high1 == high2) return 0;
+            return high1 > high2 ? -1 : 1;
+        });
+
+        return covid19Cases;
+    }
 }

@@ -75,14 +75,6 @@ public final class Covid19Case {
         return confirmed;
     }
 
-    public long[] getDeaths() {
-        return deaths;
-    }
-
-    public long[] getRecovered() {
-        return recovered;
-    }
-
     public long getConfirmed(int numberOfDays) {
         return confirmed[numberOfDays];
     }
@@ -93,5 +85,23 @@ public final class Covid19Case {
 
     public long getRecovered(int numberOfDays) {
         return recovered[numberOfDays];
+    }
+
+    public long getActive(int numberOfDays) {
+        return confirmed[numberOfDays] - deaths[numberOfDays] - recovered[numberOfDays];
+    }
+
+    public double[] getRecoveredPercentage() {
+        double[] percentage = new double[recovered.length];
+
+        for (int i = 0; i < recovered.length; i++) {
+            if (confirmed[i] == 0) {
+                percentage[i] = 0;
+            } else {
+                percentage[i] = (recovered[i] / (double) confirmed[confirmed.length - 1]) * 100;
+            }
+        }
+
+        return percentage;
     }
 }

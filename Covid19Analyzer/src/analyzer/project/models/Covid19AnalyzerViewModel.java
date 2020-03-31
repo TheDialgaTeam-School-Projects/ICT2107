@@ -26,6 +26,10 @@ public class Covid19AnalyzerViewModel {
         return covid19Repository.getTotalRecoveredCases(numberOfDays);
     }
 
+    public long getTotalActiveCases(int numberOfDays) {
+        return covid19Repository.getTotalActiveCases(numberOfDays);
+    }
+
     public List<Covid19Case> getCovid19CasesByCountry(int numberOfDays, int sortBy) {
         return covid19Repository.getCovid19CasesByCountry(numberOfDays, sortBy);
     }

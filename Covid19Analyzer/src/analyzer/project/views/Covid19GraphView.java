@@ -7,6 +7,7 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
@@ -50,9 +51,13 @@ public class Covid19GraphView extends AbstractView {
             final String selectedCountry = (String) comboBox.getSelectedItem();
             final CategoryDataset dataset = createDataset(selectedCountry);
 
-            final JFreeChart freeChart = ChartFactory.createLineChart(selectedCountry, "Number of Days since 22 January 2020", "Cases", dataset, PlotOrientation.VERTICAL, true, false, false);
+            final JFreeChart freeChart = ChartFactory.createLineChart(selectedCountry, "Number of Days since 22 January 2020", "Cases", dataset, PlotOrientation.VERTICAL, true, true, false);
             freeChart.getCategoryPlot().getDomainAxis().setMaximumCategoryLabelWidthRatio(100);
             freeChart.getPlot().setBackgroundPaint(Color.white);
+
+            final LineAndShapeRenderer lineAndShapeRenderer = (LineAndShapeRenderer) freeChart.getCategoryPlot().getRenderer();
+            lineAndShapeRenderer.setBaseShapesVisible(true);
+            lineAndShapeRenderer.setSeriesPaint(3, Color.orange);
 
             final ChartFrame chartFrame = new ChartFrame("Line Chart", freeChart);
 
@@ -78,6 +83,7 @@ public class Covid19GraphView extends AbstractView {
             dataset.addValue(covid19Case.getConfirmed(i), "Confirmed", String.format("%d", i));
             dataset.addValue(covid19Case.getDeaths(i), "Deaths", String.format("%d", i));
             dataset.addValue(covid19Case.getRecovered(i), "Recovered", String.format("%d", i));
+            dataset.addValue(covid19Case.getActive(i), "Active", String.format("%d", i));
         }
 
         return dataset;

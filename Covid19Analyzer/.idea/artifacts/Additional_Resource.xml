@@ -5,11 +5,13 @@
       <element id="directory" name="data">
         <element id="dir-copy" path="$PROJECT_DIR$/data" />
       </element>
-      <element id="directory" name="client64">
-        <element id="dir-copy" path="$PROJECT_DIR$/client64" />
-      </element>
-      <element id="directory" name="resources">
-        <element id="dir-copy" path="$PROJECT_DIR$/resources" />
+      <element id="directory" name="arcgisruntime10.2.4">
+        <element id="directory" name="client64">
+          <element id="dir-copy" path="$PROJECT_DIR$/client64" />
+        </element>
+        <element id="directory" name="resources">
+          <element id="dir-copy" path="$PROJECT_DIR$/resources" />
+        </element>
       </element>
     </root>
   </artifact>

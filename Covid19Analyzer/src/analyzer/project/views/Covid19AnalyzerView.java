@@ -22,12 +22,16 @@ import java.util.List;
 
 public final class Covid19AnalyzerView extends AbstractView {
     private static final String VIEW_TITLE = "Covid-19 Analyzer";
+
     private static final String VIEW_BY_CONFIRMED = "view_by_confirmed";
     private static final String VIEW_BY_DEATHS = "view_by_deaths";
     private static final String VIEW_BY_RECOVERED = "view_by_recovered";
+    private static final String VIEW_BY_ACTIVE = "view_by_active";
+
     private static final Color CONFIRMED_COLOR = new Color(180, 0, 0);
     private static final Color DEATHS_COLOR = new Color(0, 0, 180);
     private static final Color RECOVERED_COLOR = new Color(0, 180, 0);
+    private static final Color ACTIVE_COLOR = new Color(180, 135, 0);
 
     private JPanel panel;
     private JMenu viewMenu;
@@ -80,6 +84,10 @@ public final class Covid19AnalyzerView extends AbstractView {
                 case VIEW_BY_RECOVERED:
                     viewBy = VIEW_BY_RECOVERED;
                     break;
+
+                case VIEW_BY_ACTIVE:
+                    viewBy = VIEW_BY_ACTIVE;
+                    break;
             }
 
             updateCasesByDay();
@@ -97,10 +105,15 @@ public final class Covid19AnalyzerView extends AbstractView {
         viewByRecoveredMenuItem.setActionCommand(VIEW_BY_RECOVERED);
         viewByRecoveredMenuItem.addActionListener(viewByAction);
 
+        JRadioButtonMenuItem viewByActiveMenuItem = new JRadioButtonMenuItem("By Active Cases");
+        viewByActiveMenuItem.setActionCommand(VIEW_BY_ACTIVE);
+        viewByActiveMenuItem.addActionListener(viewByAction);
+
         ButtonGroup viewByButtonGroup = new ButtonGroup();
         viewByButtonGroup.add(viewByConfirmedMenuItem);
         viewByButtonGroup.add(viewByDeathsMenuItem);
         viewByButtonGroup.add(viewByRecoveredMenuItem);
+        viewByButtonGroup.add(viewByActiveMenuItem);
 
         JMenuItem viewGraph = new JMenuItem("Graph View By Country");
         viewGraph.addActionListener(e -> {
@@ -112,11 +125,23 @@ public final class Covid19AnalyzerView extends AbstractView {
             }
         });
 
+        JMenuItem viewGraphPercentage = new JMenuItem("Top 5 Countries Recovery Rate");
+        viewGraphPercentage.addActionListener(e -> {
+            try {
+                final Covid19PercentageGraphView graphView = new Covid19PercentageGraphView();
+                graphView.show();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+
         viewMenu.add(viewByConfirmedMenuItem);
         viewMenu.add(viewByDeathsMenuItem);
         viewMenu.add(viewByRecoveredMenuItem);
+        viewMenu.add(viewByActiveMenuItem);
         viewMenu.addSeparator();
         viewMenu.add(viewGraph);
+        viewMenu.add(viewGraphPercentage);
     }
 
     private void createDaysSliderUIComponents() {
@@ -173,6 +198,12 @@ public final class Covid19AnalyzerView extends AbstractView {
                 totalCasesValueLabel.setForeground(RECOVERED_COLOR);
                 totalCasesValueLabel.setText(NumberFormat.getInstance().format(viewModel.getTotalRecoveredCases(numberOfDays)));
                 break;
+
+            case VIEW_BY_ACTIVE:
+                totalCasesLabel.setText("Total Active");
+                totalCasesValueLabel.setForeground(ACTIVE_COLOR);
+                totalCasesValueLabel.setText(NumberFormat.getInstance().format(viewModel.getTotalActiveCases(numberOfDays)));
+                break;
         }
     }
 
@@ -196,6 +227,12 @@ public final class Covid19AnalyzerView extends AbstractView {
                 casesByCountryLabel.setText("Recovered Cases by Country");
                 covid19Cases = viewModel.getCovid19CasesByCountry(numberOfDays, Covid19Repository.SORT_BY_RECOVERED);
                 covid19Cases.removeIf(covid19Case -> covid19Case.getRecovered(numberOfDays) == 0);
+                break;
+
+            case VIEW_BY_ACTIVE:
+                casesByCountryLabel.setText("Active Cases by Country");
+                covid19Cases = viewModel.getCovid19CasesByCountry(numberOfDays, Covid19Repository.SORT_BY_ACTIVE);
+                covid19Cases.removeIf(covid19Case -> covid19Case.getActive(numberOfDays) == 0);
                 break;
 
             default:
@@ -231,6 +268,11 @@ public final class Covid19AnalyzerView extends AbstractView {
                 case VIEW_BY_RECOVERED:
                     confirmedLabel = new JLabel(NumberFormat.getInstance().format(covid19Case.getRecovered(numberOfDays)));
                     confirmedLabel.setForeground(RECOVERED_COLOR);
+                    break;
+
+                case VIEW_BY_ACTIVE:
+                    confirmedLabel = new JLabel(NumberFormat.getInstance().format(covid19Case.getActive(numberOfDays)));
+                    confirmedLabel.setForeground(ACTIVE_COLOR);
                     break;
 
                 default:
@@ -275,6 +317,11 @@ public final class Covid19AnalyzerView extends AbstractView {
             case VIEW_BY_RECOVERED:
                 covid19Cases = viewModel.getCovid19CasesByState(numberOfDays, Covid19Repository.SORT_BY_RECOVERED);
                 covid19Cases.removeIf(e -> e.getRecovered(numberOfDays) == 0);
+                break;
+
+            case VIEW_BY_ACTIVE:
+                covid19Cases = viewModel.getCovid19CasesByState(numberOfDays, Covid19Repository.SORT_BY_ACTIVE);
+                covid19Cases.removeIf(e -> e.getActive(numberOfDays) == 0);
                 break;
 
             default:

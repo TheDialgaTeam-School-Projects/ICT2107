@@ -14,13 +14,19 @@ public final class MapUtility {
     private static final String VIEW_BY_CONFIRMED = "view_by_confirmed";
     private static final String VIEW_BY_DEATHS = "view_by_deaths";
     private static final String VIEW_BY_RECOVERED = "view_by_recovered";
+    private static final String VIEW_BY_ACTIVE = "view_by_active";
+
     private static final Color CONFIRMED_COLOR = new Color(180, 0, 0, 150);
     private static final Color DEATHS_COLOR = new Color(0, 0, 180, 150);
     private static final Color RECOVERED_COLOR = new Color(0, 180, 0, 150);
+    private static final Color ACTIVE_COLOR = new Color(180, 135, 0, 150);
+
     private static final SpatialReference DEFAULT_SPATIAL_REFERENCE = SpatialReference.create(SpatialReference.WKID_WGS84_WEB_MERCATOR_AUXILIARY_SPHERE);
+
     private static final SimpleMarkerSymbol CONFIRMED_CIRCLE = new SimpleMarkerSymbol(CONFIRMED_COLOR, 1, SimpleMarkerSymbol.Style.CIRCLE);
     private static final SimpleMarkerSymbol DEATHS_CIRCLE = new SimpleMarkerSymbol(DEATHS_COLOR, 1, SimpleMarkerSymbol.Style.CIRCLE);
     private static final SimpleMarkerSymbol RECOVERED_CIRCLE = new SimpleMarkerSymbol(RECOVERED_COLOR, 1, SimpleMarkerSymbol.Style.CIRCLE);
+    private static final SimpleMarkerSymbol ACTIVE_CIRCLE = new SimpleMarkerSymbol(ACTIVE_COLOR, 1, SimpleMarkerSymbol.Style.CIRCLE);
 
     public static Graphic createGraphic(Covid19Case covid19Case, int numberOfDays, String viewBy) {
         final Geometry geometry = GeometryEngine.project(covid19Case.getLongitude(), covid19Case.getLatitude(), DEFAULT_SPATIAL_REFERENCE);
@@ -35,7 +41,7 @@ public final class MapUtility {
         final long confirmed = covid19Case.getConfirmed(numberOfDays);
         final long deaths = covid19Case.getDeaths(numberOfDays);
         final long recovered = covid19Case.getRecovered(numberOfDays);
-        final long active = confirmed - deaths - recovered;
+        final long active = covid19Case.getActive(numberOfDays);
 
         attributes.put("confirmed", confirmed);
         attributes.put("deaths", deaths);
@@ -55,6 +61,10 @@ public final class MapUtility {
 
             case VIEW_BY_RECOVERED:
                 defaultCircle = RECOVERED_CIRCLE;
+                break;
+
+            case VIEW_BY_ACTIVE:
+                defaultCircle = ACTIVE_CIRCLE;
                 break;
 
             default:
