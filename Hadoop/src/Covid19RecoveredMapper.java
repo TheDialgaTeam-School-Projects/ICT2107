@@ -1,3 +1,5 @@
+// Ang Xing Long and James Wong
+
 public class Covid19RecoveredMapper extends AbstractCovid19Mapper {
     @Override
     protected String getDataType() {

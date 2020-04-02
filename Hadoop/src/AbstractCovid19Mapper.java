@@ -1,3 +1,5 @@
+// Ang Xing Long and James Wong
+
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import org.apache.hadoop.io.LongWritable;
@@ -11,7 +13,7 @@ import java.io.StringReader;
  * This class maps the csv file content into two separate keys and values.
  * KEYIN (LongWritable): File offset from where the KEYVALUE is.
  * VALUEIN (Text): Content of the line.
- *
+ * <p>
  * KEYOUT (Text): [DATA_LEVEL] [COUNTRY] [STATE]
  * VALUEOUT (Text): [LAT] [LONG] [DATA_TYPE] [DATA]
  */
@@ -22,6 +24,7 @@ public abstract class AbstractCovid19Mapper extends Mapper<LongWritable, Text, T
 
     /**
      * Get the data type of the cases for covid-19 mapper.
+     *
      * @return The data type of the cases for covid-19 mapper.
      */
     protected abstract String getDataType();

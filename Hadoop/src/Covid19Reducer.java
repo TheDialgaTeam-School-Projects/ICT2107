@@ -1,3 +1,5 @@
+// Ang Xing Long and James Wong
+
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
@@ -10,12 +12,12 @@ import java.util.List;
  * This class reduce the mapper into appropriate keys and values.
  * KEYIN (Text): [DATA_LEVEL] [COUNTRY] [STATE]
  * VALUEIN (Text): [LAT] [LONG] [DATA_TYPE] [DATA]
- *
+ * <p>
  * KEYOUT (Text): [DATA_LEVEL] [COUNTRY] [STATE]
- *
+ * <p>
  * DATA_LEVEL == State
  * VALUEOUT (Text): [LAT] [LONG] [CONFIRMED] [DEATHS] [RECOVERED]
- *
+ * <p>
  * DATA_LEVEL == Country
  * VALUEOUT (Text): [CONFIRMED] [DEATHS] [RECOVERED]
  */
