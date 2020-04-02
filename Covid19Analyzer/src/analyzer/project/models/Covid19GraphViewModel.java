@@ -1,3 +1,5 @@
+// Jerry Wong
+
 package analyzer.project.models;
 
 import java.io.IOException;

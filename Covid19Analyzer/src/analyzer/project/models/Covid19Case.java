@@ -1,3 +1,5 @@
+// Yong Jian Ming
+
 package analyzer.project.models;
 
 public final class Covid19Case {

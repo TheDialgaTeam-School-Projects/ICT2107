@@ -1,3 +1,6 @@
+// Guo Zhi Yong and Huang YiYi - GUI
+// Yong Jian Ming - Heat Map
+
 package analyzer.project.views;
 
 import analyzer.project.models.Covid19AnalyzerViewModel;

@@ -1,3 +1,6 @@
+// Guo Zhi Yong and Huang YiYi - GUI
+// Jerry Wang - JFreeChart
+
 package analyzer.project.views;
 
 import analyzer.project.models.Covid19Case;
